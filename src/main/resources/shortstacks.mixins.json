@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.momosoftworks.shortstacks.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "shortstacks.refmap.json",
+  "mixins": [
+    "MixinStackSize"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
