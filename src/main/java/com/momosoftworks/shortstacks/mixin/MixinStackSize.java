@@ -19,7 +19,7 @@ public class MixinStackSize
         FoodProperties foodProperties = item.getFoodProperties();
         if (foodProperties != null)
         {
-            int nutrition = foodProperties.getNutrition();
+            int nutrition = Math.max(1, foodProperties.getNutrition());
             int stackSize = 64 / nutrition;
             int roundedStackSize = stackSize == 1 ? stackSize : Mth.roundToward(64 / nutrition, 2);
             cir.setReturnValue(Mth.clamp(roundedStackSize, 1, 64));
