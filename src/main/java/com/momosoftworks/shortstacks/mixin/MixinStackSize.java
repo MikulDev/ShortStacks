@@ -13,16 +13,18 @@ public class MixinStackSize
 {
     Item item = (Item) (Object) this;
 
-    @Inject(method = "getMaxStackSize", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getMaxStackSize", at = @At("RETURN"), cancellable = true)
     public void getMaxStackSize(CallbackInfoReturnable<Integer> cir)
     {
+        int originalStackSize = cir.getReturnValue();
         FoodProperties foodProperties = item.getFoodProperties();
         if (foodProperties != null)
         {
             int nutrition = Math.max(1, foodProperties.getNutrition());
             int stackSize = 64 / nutrition;
             int roundedStackSize = stackSize == 1 ? stackSize : Mth.roundToward(64 / nutrition, 2);
-            cir.setReturnValue(Mth.clamp(roundedStackSize, 1, 64));
+            int newStackSize = Mth.clamp(roundedStackSize, 1, 64);
+            cir.setReturnValue(Math.min(originalStackSize, newStackSize));
         }
     }
 }
