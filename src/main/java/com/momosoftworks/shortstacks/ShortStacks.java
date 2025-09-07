@@ -1,6 +1,6 @@
 package com.momosoftworks.shortstacks;
 
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.fml.common.Mod;
 
 @Mod(ShortStacks.MOD_ID)
 public class ShortStacks
